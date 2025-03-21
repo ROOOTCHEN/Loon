@@ -10,16 +10,17 @@
 [Argument]
 Music163_VIP_Shared = switch, true, false, tag=网易云音乐共享会员, desc=会员共享开关
 
-
 [Rewrite]
 ^https?:\/\/(?:ipv4|interface\d?)\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) header-replace x-aeapi false
 ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/vip\/cashier\/tspopup\/get - reject-200
 
 [Script]
 # 解锁播放会员歌曲
-http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
-http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/v3\/song\/detail script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
-http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
+http-request ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(song\/enhance\/player\/url\/v\d|vipauth\/app\/auth\/query) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
+
+// http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
+// http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/v3\/song\/detail script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
+// http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放会员歌曲, enable={Music163_VIP_Shared}
 
 # 播放器会员皮肤
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/playermode\/ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放器会员皮肤, enable={Music163_VIP_Shared}
