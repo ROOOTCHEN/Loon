@@ -11,16 +11,12 @@
 Music163_VIP_Shared = switch, true, false, tag=网易云音乐共享会员, desc=共享会员开关
 
 [Rewrite]
-^https?:\/\/(?:ipv4|interface\d?)\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) header-replace x-aeapi false
+^https?:\/\/(?:ipv4|interface\d?)\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) header-replace x-aeapi false
 ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/vip\/cashier\/tspopup\/get - reject-200
 
 [Script]
-# 网易云重写
-http-response ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) script-path= https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body=true, binary-body-mode=true, timeout=60, tag=网易云重写, enable={Music163_VIP_Shared}
 # 网易云转发
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(song\/enhance\/player\/url\/v\d|vipauth\/app\/auth\/query) script-path= https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body=true, timeout=60, tag=网易云转发, enable={Music163_VIP_Shared}
-
-// ------------------------------------//
 
 # 播放器会员皮肤
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/playermode\/ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放器会员皮肤, enable={Music163_VIP_Shared}
