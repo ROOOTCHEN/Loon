@@ -15,7 +15,7 @@ if ($request && $request.url) {
     }
 
     // 处理 SNID 只针对 /mp/activity.lottery/getUserInfoV2
-    else if (url.includes("/mp/activity.lottery.getUserInfoV2")) {
+    else if (url.includes("/mp/activity.lottery/getUserInfoV2")) {
         let snIdMatch = url.match(/[?&]snId=(\d+)/);
         if (snIdMatch) {
             let snId = snIdMatch[1];
