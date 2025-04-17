@@ -1,9 +1,0 @@
-#!name = 测试
-#!data = 2025-4-16
-#!homepage = https://github.com/ROOOTCHEN/loon
-
-[Script]
-http-response ^https:\/\/wx\.10086\.cn\/website\/nrapigate\/nrmix\/product\/prodWithNormList$ script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/CMCC/Replace-cmcc.js, requires-body=true, timeout=10, tag=10086
-
-[MITM]
-hostname = wx.10086.cn
