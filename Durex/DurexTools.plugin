@@ -3,12 +3,12 @@
 #!data = 2025-4-18
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/Durex-Logo.png
 #!homepage = https://github.com/ROOOTCHEN/loon
-#!input = Durex_Token
+#!input = DUREX
 
 [Argument]
-Durex_Token_Shared = switch, true, false, tag=共享会话
-TOKEN = switch,true, false,tag = 杜蕾斯会话
-SNID = switch,true, false,tag = 杜蕾斯活动
+Durex_Token_Shared = switch, true, false, tag=共享Token
+TOKEN = switch,true, false, tag = 获取杜杜Token
+SNID = switch,true, false, tag = 获取杜蕾斯活动
 
 [Script]
 #会话
@@ -18,7 +18,7 @@ http-request ^https:\/\/vip\.ixiliu\.cn\/mp\/user\/info$ script-path = https://r
 http-request ^https:\/\/vip\.ixiliu\.cn\/mp\/activity\.lottery\/getUserInfoV2\?snId=(\d+) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=true, timeout=5, tag=活动SNID, enable={SNID}
 
 # 替换TOKNE
-http-request ^https:\/\/vip\.ixiliu\.cn\/.+ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/header.js,  requires-body=true, timeout=5, tag=共享会话, enable={Durex_Token_Shared}
+http-request ^https:\/\/vip\.ixiliu\.cn\/.+ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/header.js,  requires-body=true, timeout=5, tag=共享会话, enable={DUREX}
 
 [MITM]
 hostname = vip.ixiliu.cn
