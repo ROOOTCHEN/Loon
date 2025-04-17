@@ -7,7 +7,7 @@
 
 [Argument]
 TOKEN = switch,true, false, tag = 获取杜杜会话
-SNID = switch,true, false, tag = 获取杜蕾斯活动
+SNID = switch,true, false, tag = 获取杜杜活动
 Durex_Token_Shared = switch, true, false, tag=共享杜杜会话
 
 [Script]
