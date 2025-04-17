@@ -1,15 +1,16 @@
-#!name = 杜蕾斯助手
-#!desc = 小程序杜蕾斯助手,获取用户TOKEN,活动SNID等
+#!name = 杜杜小助手
+#!desc = 杜杜小助手获取TOKEN、SNID。
 #!data = 2025-4-17
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/Durex-Logo.png
 #!homepage = https://github.com/ROOOTCHEN/loon
+#!author = 小陳同學
 
 [Argument]
-TOKEN = switch,true, false,tag=杜蕾斯会话, desc=开关
-SNID = switch,true, false,tag=杜蕾斯活动, desc=开关
+TOKEN = switch,true, false,tag = 杜蕾斯会话
+SNID = switch,true, false,tag = 杜蕾斯活动
 [Script]
 
-#会话
+# 会话
 http-request ^https:\/\/vip\.ixiliu\.cn\/mp\/user\/info$ script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=true, timeout=5, tag=会话, enable={TOKEN}
 
 # 活动SNID
