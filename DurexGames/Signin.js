@@ -1,9 +1,12 @@
-// Loon脚本: 自动模拟 POST 签到请求，动态读取持久化的 Access-Token
+// Loon 脚本: 自动签到 - 支持 mobile 与 Access-Token 判断
+const token = $persistentStore.read('ixiliu_token');
+const mobile = $persistentStore.read('Phone');
 
-const token = $persistentStore.read('ixiliu_token');  // 动态读取持久化的 Token
-
-if (!token) {
-    console.log("❌ 未找到持久化 Access-Token，请先运行获取脚本");
+if (!token || !mobile) {
+    let msg = [];
+    if (!token) msg.push("❌ Access-Token 缺失");
+    if (!mobile) msg.push("📵 Mobile 号码未设置");
+    $notification.post("杜杜签到失败", "参数缺失", msg.join("\n"));
     $done();
     return;
 }
@@ -26,16 +29,28 @@ const headers = {
 
 const body = JSON.stringify({
     "event_type": "game_share",
+    "mobile": mobile,
     "enterprise_id": "298940337935808",
-    "Access-Token": token  // 用动态读取的 token 替换
+    "Access-Token": token
 });
 
 $httpClient.post({ url, headers, body }, function (error, response, data) {
     if (error) {
         console.log("❌ 请求失败:", error);
+        $notification.post("签到失败", "网络错误", error);
     } else {
         console.log("✅ 请求成功，状态码:", response.status);
         console.log("📦 返回数据:", data);
+        try {
+            let obj = JSON.parse(data);
+            if (obj.code === 20000 || obj.status === 20000) {
+                $notification.post("🎉 签到成功", obj.msg || "成功完成任务", "");
+            } else {
+                $notification.post("⚠️ 签到异常", obj.msg || "未知返回", JSON.stringify(obj));
+            }
+        } catch (e) {
+            $notification.post("⚠️ 解析失败", "返回数据不是 JSON", data);
+        }
     }
     $done();
 });
