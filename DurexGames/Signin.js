@@ -40,15 +40,19 @@ $httpClient.post({ url, headers, body }, function (error, response, data) {
         $notification.post("签到失败", "网络错误", error);
     } else {
         console.log("✅ 请求成功，状态码:", response.status);
-        console.log("📦 返回数据:", data);
+        console.log("📦 返回数据:", data);  // data 即响应体内容
+
         try {
-            let obj = JSON.parse(data);
+            let obj = JSON.parse(data);  // 解析响应体
+            console.log("📦 解析后的返回内容:", obj);
+
             if (obj.code === 20000 || obj.status === 20000) {
                 $notification.post("🎉 签到成功", obj.msg || "成功完成任务", "");
             } else {
                 $notification.post("⚠️ 签到异常", obj.msg || "未知返回", JSON.stringify(obj));
             }
         } catch (e) {
+            console.log("⚠️ 解析失败:", e);
             $notification.post("⚠️ 解析失败", "返回数据不是 JSON", data);
         }
     }
