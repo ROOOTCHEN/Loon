@@ -3,7 +3,8 @@
 #!data = 2025-4-18
 #!icon = http://wx.qlogo.cn/mmhead/5cJ329xUeTxEGQWPUHZ22bM3u3h77n9EN12mX63o1EheGdGeZSpf2Sja318CwyCS1cBZa7RRCzI/132
 #!homepage = https://github.com/ROOOTCHEN/loon
-#!input = completionTime
+#!input = Phone
+
 
 [Argument]
 Durex_Token = switch, true, false, tag=获取会话
