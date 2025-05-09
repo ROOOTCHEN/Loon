@@ -1,0 +1,14 @@
+#!name=招商银行
+#!author=ROOOTCHEN
+#!icon = 
+#!date=2025-05-09
+#!homepage = https://github.com/ROOOTCHEN/loon
+#!input = cmb_modified_balance
+#!input = cmb_modified_income
+#!input = cmb_modified_expense
+
+[Script]
+http-response ^https:\/\/mobile\.cmbchina\.com\/daccountview\/(my-channel-total-asset|sz)\/query script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/CMB/Fake.js, requires-body=true, timeout=60,tag=招商银行
+
+[MITM]
+hostname = mobile.cmbchina.com
