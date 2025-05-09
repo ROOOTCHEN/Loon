@@ -1,7 +1,9 @@
 #!name=好轻会员解锁
-#!desc=解锁好轻APP会员特权，包括自动续费状态和长期有效期
-#!author=YourName
+#!desc=解锁好轻APP会员特权
+#!author=ROOOTCHEN
+#!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/YunMai/icon.png
 #!date=2025-05-09
+#!homepage = https://github.com/ROOOTCHEN/loon
 
 [Script]
 # 会员状态修改
