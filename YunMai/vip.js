@@ -33,7 +33,7 @@
             if (obj.data) {
                 // 修改剩余天数为最大值
                 if (typeof obj.data.freeDays !== 'undefined') {
-                    obj.data.freeDays = 9999;
+                    obj.data.freeDays = 0;
                 }
                 // 设置VIP长期有效 (2033-11-20)
                 if (typeof obj.data.fellowEndTime !== 'undefined') {
