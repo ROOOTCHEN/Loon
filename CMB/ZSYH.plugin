@@ -8,6 +8,10 @@
 #!input = cmb_modified_income
 #!input = cmb_modified_expense
 
+[Argument]
+Balance = input,"cmb_modified_balance",tag=余额
+Expense = input,"cmb_modified_expense",tag=支出
+Income = input,"cmb_modified_income",tag=收入
 [Script]
 http-response ^https:\/\/mobile\.cmbchina\.com\/daccountview\/(my-channel-total-asset|sz)\/query script-path=mock_cmb_asset.js, requires-body=true, timeout=60,tag=招商银行
 
