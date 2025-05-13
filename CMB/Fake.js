@@ -2,9 +2,9 @@ const url = $request.url;
 let body = $response.body;
 
 // 从持久化存储中读取要修改的值
-const modifiedBalance = $persistentStore.read("cmb_modified_balance"); // 修改后的余额值（同时用于totalAsset和currentSumAsset）
-const modifiedIncome = $persistentStore.read("cmb_modified_income");   // 修改后的收入值
-const modifiedExpense = $persistentStore.read("cmb_modified_expense"); // 修改后的支出值
+const modifiedBalance = $argument.cmb_modified_balance; // 修改后的余额值（同时用于totalAsset和currentSumAsset）
+const modifiedIncome = $argument.cmb_modified_income;   // 修改后的收入值
+const modifiedExpense = $argument.cmb_modified_expense; // 修改后的支出值
 
 try {
     const data = JSON.parse(body);
