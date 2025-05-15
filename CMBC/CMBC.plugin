@@ -1,5 +1,5 @@
-#!name=招商银行资产美化
-#!desc=轻松定制你的收支视图，专属你的装杯世界
+#!name=招商银行
+#!desc=隐藏真实数据，展现理想人生
 #!author=ROOOTCHEN
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/CMBC/LOGO.png
 #!date=2025-05-15
@@ -11,13 +11,8 @@ cmb_modified_balance = input,"88888.88",tag=余额
 cmb_modified_expense = input,"6666.66",tag=支出
 cmb_modified_income = input,"6666.66",tag=收入
 
-[Rewrite]
-^https:\/\/s3gw\.cmbimg\.com\/mbappinitads\/ reject
-^https?:\/\/webappcfg\.paas\.cmbchina\.com\/v\d\/func\/getmarketconfig reject-200
-^https?:\/\/mbmodule-openapi\.paas\.cmbchina\.com\/graphic\/v2\/module\/graphic reject-dict
-
 [Script]
 http-response ^https:\/\/mobile\.cmbchina\.com\/daccountview\/(my-channel-total-asset|sz)\/query script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/CMBC/Fake.js, requires-body=true, timeout=60,tag=招商银行,argument=[{cmb_modified_balance},{cmb_modified_expense},{cmb_modified_income}]
 
 [MITM]
-hostname = mobile.cmbchina.com,s3gw.cmbimg.com, webappcfg.paas.cmbchina.com,mbmodule-openapi.paas.cmbchina.com
+hostname = mobile.cmbchina.com
