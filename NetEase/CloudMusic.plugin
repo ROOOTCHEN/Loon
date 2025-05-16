@@ -25,7 +25,7 @@ http-response ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(mine\/(collect|
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/playermode\/ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 播放器会员皮肤, enable={Music163_VIP_Shared}
 
 # 会员认证
-http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 会员认证, enable={Music163_VIP_Shared}
+#http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 会员认证, enable={Music163_VIP_Shared}
 
 # 侧边栏会员等级
 http-request ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = 侧边栏会员等级, enable={Music163_VIP_Shared}
