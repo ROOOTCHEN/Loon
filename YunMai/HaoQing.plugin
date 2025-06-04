@@ -5,6 +5,9 @@
 #!date=2025-05-09
 #!homepage = https://github.com/ROOOTCHEN/loon
 
+[Rewrite]
+^https:\/\/restapi\.iyunmai\.com\/appapi\/ios\/tips\/list_dock\.json\?.* reject-dict
+
 [Script]
 # 会员状态修改
 http-response ^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/fellow\/myAllFellow\.json script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/YunMai/vip.js,requires-body=true,timeout=10,tag=好轻会员状态
