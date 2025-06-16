@@ -23,7 +23,7 @@ http-request ^https:\/\/vip\.ixiliu\.cn\/mp\/activity\.lottery\/getUserInfoV2\?s
 http-request ^https:\/\/vip\.ixiliu\.cn\/.+ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/header.js,  requires-body=true, timeout=5, tag=共享会话, enable={Durex_Token_Shared}
 
 # 替换产品ID
-http-request https://vip.ixiliu.cn/mp/points.goods/detailMulSpec?goodsId=* script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=true, tag=修改产品ID, enable={Durex_Googs_ID}
+http-request ^https:\/\/vip\.ixiliu\.cn\/mp\/points\.goods\/detailMulSpec\?goodsId=\d+ script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=true, tag=修改产品ID, enable={Durex_Googs_ID}
 
 [MITM]
 hostname = vip.ixiliu.cn
