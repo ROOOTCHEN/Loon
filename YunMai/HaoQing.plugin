@@ -14,7 +14,7 @@
 ^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/fellow\/myAllFellow\.json response-body-json-jq '.data.haoqingPlus.autoRenewStatus = 2 | .data.haoqingPlus.endTime = 2014646400 | .data.haoqingPlus.cardType = 3'
 
 # 会员有效期修改
-^http-response ^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/order\/getWaitReceiveFreeDays\.json response-body-json-jq '.data.freeDays = 0 | .data.fellowEndTime = 2014646400'
+^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/order\/getWaitReceiveFreeDays\.json response-body-json-jq '.data.freeDays = 0 | .data.fellowEndTime = 2014646400'
 
 [MITM]
 hostname = restapi.iyunmai.com
