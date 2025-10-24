@@ -2,18 +2,18 @@
 #!desc=解锁好轻APP会员特权
 #!author=ROOOTCHEN
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/YunMai/icon.png
-#!date=2025-05-09
+#!date=2025-10-24
 #!homepage = https://github.com/ROOOTCHEN/loon
 
 [Rewrite]
+#去除AD
 ^https:\/\/restapi\.iyunmai\.com\/appapi\/ios\/tips\/list_dock\.json\?.* reject-dict
 
-[Script]
 # 会员状态修改
-http-response ^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/fellow\/myAllFellow\.json script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/YunMai/vip.js,requires-body=true,timeout=10,tag=好轻会员状态
+^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/fellow\/myAllFellow\.json response-body-json-jq '.data.haoqingPlus.autoRenewStatus = 2 | .data.haoqingPlus.endTime = 2014646400 | .data.haoqingPlus.cardType = 3'
 
 # 会员有效期修改
-http-response ^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/order\/getWaitReceiveFreeDays\.json script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/YunMai/vip.js,requires-body=true,timeout=10,tag=好轻有效期
+http-response ^https:\/\/restapi\.iyunmai\.com\/fellow-service\/ios\/order\/getWaitReceiveFreeDays\.json response-body-json-jq '.data.freeDays = 0 | .data.fellowEndTime = 2014646400'
 
 [MITM]
 hostname = restapi.iyunmai.com
