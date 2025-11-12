@@ -1,5 +1,5 @@
-#!name=QQ在线状态
-#!desc=各种机型iPhone在线
+#!name=QQ在线机型修改
+#!desc=修改 QQ IOS端的在线状态机型显示，支持各种 iOS 设备型号。
 #!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/QQ.png
 #!author=ROOOTCHEN[https://github.com/ROOOTCHEN/loon]
 #!date=2025-11-12
