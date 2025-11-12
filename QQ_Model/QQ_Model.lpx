@@ -7,13 +7,8 @@
 #!tag = 解锁
 #!select=IOS设备选择,不显示,iPad Pro,iPhone 15,iPhone 15 Plus,iPhone 15 Pro,iPhone 15 Pro Max,iPhone 16,iPhone 16 Plus,iPhone 16e,iPhone 16 Pro,iPhone 16 Pro Max,iPhone 17,iPhone 17 Pro,iPhone 17 Pro Max,iPhone Air
 
-[Argument]
-Notice = switch, false, tag = 完成通知,desc = 通知开关
-
 [Script]
-http-request ^https?:\/\/club\.vip\.qq\.com/srf-cgi-node.* script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/QQ_Model/QQ_Devices.js,requires-body = true,timeout = 10,argument={Notice},tag = 修改机型
-
-http-response ^https?:\/\/club\.vip\.qq\.com/srf-cgi-node.* script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/QQ_Model/QQ_Online_Notify.js,timeout = 10,argument={Notice},enable={Notice},tag = 完成通知
+http-request ^https?:\/\/club\.vip\.qq\.com/srf-cgi-node.* script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/QQ_Model/QQ_Devices.js,requires-body = true,timeout = 10,argument={Notice},tag = 修改设备
 
 [MITM]
 hostname = club.vip.qq.com
