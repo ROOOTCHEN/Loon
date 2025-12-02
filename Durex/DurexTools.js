@@ -20,8 +20,8 @@ if ($request && $request.url) {
         }
     }
 
-    // ✅ SNID 提取（仅限 /mp/activity.lottery/getUserInfoV2?snId=xxx）
-    else if (url.includes("/mp/activity.lottery/getUserInfoV2")) {
+    // ✅ SNID 提取（仅限 /mp/activity.lottery/content?snId=xxx）
+    else if (url.includes("/mp/activity.lottery/content")) {
         const snIdMatch = url.match(/[?&]snId=(\d+)/);
         if (snIdMatch) {
             const snId = snIdMatch[1];
