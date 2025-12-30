@@ -3,9 +3,6 @@
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/Cloudmusic.png
 #!tag = 会员
 #!date = 2025-12-30 23:54
-#!input = Music163_Cookie
-#!input = Music163_MConfigInfo
-#!input = Music163_UserAgent
 
 [Argument]
 Music163_VIP_Shared = switch, false, true, tag = 启用[共享会员], desc = 是否启用网易云音乐共享会员
