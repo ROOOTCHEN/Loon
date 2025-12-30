@@ -1,8 +1,10 @@
-#!name=网易云音乐
-#!desc=解锁会员音频、音质
+#!name = 网易云音乐会员
+#!desc =自定义共享Cookie数据,使用网易云音乐会员
+#!openUrl = https://apps.apple.com/app/id590338362
+#!tag = 解锁会员
+#!loon_version = 3.3.7(921)
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/Cloudmusic.png
-#!tag = 会员
-#!date = 2025-12-30 23:54
+#!date = 2025-12-31 00:54
 
 [Argument]
 Music163_VIP_Shared = switch, false, true, tag = 启用[共享会员], desc = 是否启用网易云音乐共享会员
@@ -11,18 +13,44 @@ MConfigInfo = input, "", tag = MConfigInfo ,desc = 请填写MConfigInfo值
 UserAgent = input, "", tag = UserAgent, desc = 请填写UserAgent值
 
 [Rewrite]
-^https?:\/\/(?:ipv4|interface\d?)\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) header-replace x-aeapi false
-^https?:\/\/interface\d?\.music\.163\.com\/e?api\/vip\/cashier\/tspopup\/get - reject-200
+# 今日运势 商城 Beat专区 音乐收藏家 | type:ACTIVITY | 低至5.2折
+^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/(?:delivery\/(batch-)?deliver|moment\/tab\/info\/|side-bar\/mini-program\/music-service\/account|yunbei\/account\/entrance\/) reject-dict
+
+# 播放页 歌名下方 乐迷团｜关注｜播放页提示｜音乐应用红点｜播放提示
+^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/(?:community\/friends\/fans-group\/artist\/group\/|mine\/applet\/redpoint|music\/songshare\/text\/recommend\/|resniche\/position\/play\/new\/|resniche\/tspopup\/show|resource\/comments?\/musiciansaid\/|user\/sub\/artist) reject-dict
+^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/(?:ios\/version|mlivestream\/entrance\/playpage\/|link\/position\/show\/strategy|link\/scene\/show\/resource|v1\/content\/exposure\/comment\/banner\/) reject-dict
+
+# 搜索页 搜索词 热搜卡片 猜你喜欢 我的应用下方提醒
+^https?:\/\/(ipv4|interface\d?)\.music\.163.com\/w?e?api\/search\/default mock-response-body data-type=text
+^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/w?eapi\/(?:activity\/bonus\/playpage\/time\/query|resource-exposure\/|search\/(?:chart\/|rcmd\/keyword\/|specialkeyword\/)) reject-dict
+
+# 主页播客推荐
+^https:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/my\/podcast\/tab\/recommend reject-dict
 
 [Script]
-# 网易云转发
-http-request ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(song\/enhance\/player\/url\/v\d|vipauth\/app\/auth\/query) script-path= https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body=true, timeout=60, tag=网易云转发, enable={Music163_VIP_Shared}
+# 解锁黑胶音乐
+# http-response ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) script-path = https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/NeteaseCloudMusic/netease.js, requires-body = true, binary-body-mode = true, timeout = 60, tag = [网易云音乐]黑胶会员重写, enable={Music163_VIP_Shared}
+# http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(song\/enhance\/player\/url\/v\d|vipauth\/app\/auth\/query) script-path = https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/NeteaseCloudMusic/netease.js, requires-body = true, timeout = 60, tag = [网易云音乐]黑胶会员转发, enable={Music163_VIP_Shared}
 
-# 网易云重写
-#http-response ^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) script-path= https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body=true, binary-body-mode=true, timeout=60, tag=网易云重写, enable={Music163_VIP_Shared}
+# 播放会员歌曲
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]播放会员歌曲, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/v3\/song\/detail script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]播放会员歌曲, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]播放会员歌曲, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
 
-# 播放器会员
-http-response ^https?://interface\d+\.music\.163\.com/e?api/mine/rn/header/info/get script-path= https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/VIP.js,requires-body=true, binary-body-mode=true, timeout=60
+# 播放器会员皮肤
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/playermode\/ script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]播放器会员皮肤, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
 
-[MITM]
-hostname = interface*.music.163.com
+# 搜索结果会员歌曲
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/search\/(?:complex\/page|complex\/rec\/song\/get|song\/list\/page) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]搜索结果会员歌曲, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
+
+# 侧边栏会员等级
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]侧边栏会员等级, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
+
+# 歌单列表会员认证
+http-request ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/w?e?api\/(?:homepage\/|v6\/)?playlist\/(?!(?:delete|subscribe|unsubscribe)) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/header.js, requires-body = false, binary-body-mode = false, timeout = 20, tag = [网易云音乐]歌单列表会员认证, enable={Music163_VIP_Shared} ,argument=[{Cookie},{MConfigInfo},{UserAgent}]
+
+# 会员认证
+http-response ^https?://interface\d+\.music\.163\.com/e?api/mine/rn/header/info/get script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/NetEase/VIP.js, requires-body=true, binary-body-mode=true, timeout=60, tag=[网易云音乐]我的页面会员, enable={Music163_VIP_Shared}
+
+[MitM]
+hostname = interface*.music.163.com, ipv4.music.163.com
