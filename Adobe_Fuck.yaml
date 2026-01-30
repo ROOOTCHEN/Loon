@@ -33,5 +33,7 @@ rules:
   - DOMAIN-SUFFIX,cc-api-data.adobe.io,REJECT
   - DOMAIN-REGEX,\w{10}\.adobe\.io,REJECT
   - DOMAIN-REGEX,\w{10}\.adobestats\.io,REJECT
+  - DOMAIN-REGEX,^.+\.adobestats\.io$,REJECT
   - GEOIP,CN,DIRECT
   - MATCH,DIRECT
+
