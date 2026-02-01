@@ -1,5 +1,5 @@
 #!name=运营商增强
-#!desc=强制开启中国联通 APP 内隐藏的 Wi-Fi 通话设置开关,移动云盘APP业务全展示,修复湖北移动公众号菜单栏 查询功能,无需跳转中国移动APP。
+#!desc=强制开启中国联通APP内Wi-Fi通话功能,移动云盘APP业务全展示,修复湖北移动公众号菜单栏查询功能,无需跳转中国移动APP。
 #!author=ROOOTCHEN
 #!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Operator/Operator.png
 #!date=2026-2-1
