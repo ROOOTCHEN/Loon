@@ -1,0 +1,26 @@
+#!name=运营商增强
+#!desc=强制开启中国联通 APP 内隐藏的 Wi-Fi 通话设置开关,移动云盘APP业务全展示,修复湖北移动公众号菜单栏 查询功能,无需跳转中国移动APP。
+#!author=ROOOTCHEN
+#!icon = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Operator/Operator.png
+#!date=2026-2-1
+#!homepage = https://github.com/ROOOTCHEN/loon
+
+
+[Rewrite]
+# 中国联通WiFi通话
+^https:\/\/m\.client\.10010\.com\/edopinterface\/officialWhite\/checkOfficialWhitePhone response-body-json-jq '.response.head.respCode = "0000"'
+
+# 移动云盘
+^https:\/\/vip\.yun\.139\.com\/m4c\/benefit\/queryProductsV2$ request-body-json-jq '.productType = 0'
+
+# 个人主页 (sso2959)
+^https?:\/\/wap\.hb\.10086\.cn\/weixinCenter\/ssoRedirect\.srv\?.*type=sso2959.* 307 https://wap.hb.10086.cn/wapres/wap-h5/personalcenter/personalCenter.html
+
+# 套餐余量 (sso2960)
+^https?:\/\/wap\.hb\.10086\.cn\/weixinCenter\/ssoRedirect\.srv\?.*type=sso2960.* 307 https://hb.ac.10086.cn/hyh_release/h5/static/flowv2?from_channel=30000
+
+# 我的账单 (sso2961)
+^https?:\/\/wap\.hb\.10086\.cn\/weixinCenter\/ssoRedirect\.srv\?.*type=sso2961.* 307 https://hb.ac.10086.cn/hyh_release/h5/static/bill?from_channel=30000
+
+[MITM]
+hostname = vip.yun.139.com,m.client.10010.com,wap.hb.10086.cn
