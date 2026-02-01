@@ -6,7 +6,7 @@
 
 
 [Script]
-http-request ^https?:\/\/vip\.ixiliu\.cn\/mp\/(user\/info|activity\.lottery\/content) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/header.js,  requires-body=false, timeout=5, tag=杜蕾斯增强
+http-request ^https?:\/\/vip\.ixiliu\.cn\/mp\/(user\/info|activity\.lottery\/content) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=false, timeout=5, tag=杜蕾斯增强
 
 [MITM]
 hostname = vip.ixiliu.cn
