@@ -6,7 +6,11 @@
 
 
 [Script]
+# 获取 Token 和 SNID 
 http-request ^https?:\/\/vip\.ixiliu\.cn\/mp\/(user\/info|activity\.lottery\/content) script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=false, timeout=5, tag=杜蕾斯增强
 
+# 新增：获取 OpenID
+http-response ^https?:\/\/dlswxgame\.ixiliu\.cn\/api\/auth\/loginByWeChat script-path = https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/Durex/DurexTools.js, requires-body=true, timeout=5, tag=获取OpenID
+
 [MITM]
-hostname = vip.ixiliu.cn
+hostname =  vip.ixiliu.cn, dlswxgame.ixiliu.cn
