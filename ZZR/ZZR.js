@@ -4,9 +4,9 @@
 #!tag = 功能增强
 #!loon_version = 3.3.7(921)
 #!icon = https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ba/0b/79/ba0b798e-a237-c98e-196a-13dbbc4ea7fb/Placeholder.mill/400x400bb-75.webp
-#!date = 2025-12-31 00:54
+#!date = 2026-4-7 19:21
 
-[Rewrite]
+[Script]
 http-request ^https:\/\/api\.5th\.zone\/jerusalem\/api\/message\/dailySummary\/trigger script-path=https://raw.githubusercontent.com/ROOOTCHEN/Loon/refs/heads/main/ZZR/ZZR_Token.js, requires-body=false, tag=提取Authorization
 
 [MitM]
